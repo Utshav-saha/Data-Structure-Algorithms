@@ -51,20 +51,35 @@ int search(Node* head, int val){
         count++;
         temp = temp->next;
     }
-    return 0;
+    return -1; // Return -1 if the value is not found
+}
+
+void print(Node* head){
+    Node* temp = head;
+    while(temp){
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl; // Add a newline for better output formatting
+}
+
+Node* deletion_first(Node* head){
+    if(head == NULL) return head;
+
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    return head;
+
 }
 
 int main()
 {
     vector <int> v = {12, 2, 31, 4, 5};
     Node* head = convertArr2LL(v);
+    print(head);
+    head = deletion_first(head);
+    print(head);
 
-    // Traversal
-
-    Node* temp = head;
-    while(temp){
-        cout << temp->data << " ";
-        temp = temp->next;
-    }
-
+    return 0; // Add return statement
 }
