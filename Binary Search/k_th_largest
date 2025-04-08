@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class TreeNode
+{
+public:
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int data)
+    {
+        val = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+int kth_largest(TreeNode *root, int k) {
+    stack< TreeNode* > s;
+    while(!s.empty() || root) {
+        while(root) {
+            s.push(root);
+            root = root->right;
+        }
+        root = s.top();
+        s.pop();
+        if(--k == 0)
+            return root->val;
+        else    
+            root = root->left;
+    }
+    return -1;
+}
