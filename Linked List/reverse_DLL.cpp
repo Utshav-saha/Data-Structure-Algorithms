@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+//#include <numeric>
 using namespace std;
 
 class Node{
@@ -73,4 +74,7 @@ int main()
 
         head = reverseList(head);
         print(head);
+
+        // int c = gcd(25,10);
+        // cout << c << endl;
 }

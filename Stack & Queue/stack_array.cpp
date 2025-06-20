@@ -9,8 +9,11 @@ class st{
     public:
     void push(int x)
     {
-        if(temp > 1000) cout << "Size exceeded";
-
+        if(temp > 1000)
+        {
+            cout << "Size exceeded";
+            return;
+        }
         temp++;
         arr[temp] = x;
     }

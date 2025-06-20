@@ -3,15 +3,16 @@
     {
       "name": "macos-clang-arm64",
       "includePath": [
-        "${workspaceFolder}/**"
+        "${workspaceFolder}/**",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include/c++/v1",     // libc++: where <numeric> and std::gcd live
+        "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/Resources/Clang/include",               // Clang built-in headers (preferred)
+        "/Library/Developer/CommandLineTools/usr/include",                                // Internal system headers
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX15.4.sdk/usr/include"             // SDK system headers
       ],
-      "compilerPath": "/usr/bin/clang",
-      "cStandard": "${default}",
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c17",
       "cppStandard": "c++20",
-      "intelliSenseMode": "macos-clang-arm64",
-      "compilerArgs": [
-        ""
-      ]
+      "intelliSenseMode": "macos-clang-arm64"
     }
   ],
   "version": 4
