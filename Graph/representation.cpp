@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+#include <vector>
 
 int main(){
     int m , n;
@@ -19,7 +20,7 @@ int main(){
     vector <int> adjacency[n+1];
     for(int i=0; i<m; i++){
         int u , v;
-        
+        cin >> u >> v;
         adjacency[u].push_back(v);
         adjacency[v].push_back(u);
     }
