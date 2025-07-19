@@ -1,0 +1,89 @@
+#include <iostream>
+#include <climits>
+#include <vector>
+using namespace std;
+
+int getMax(vector<int> &v)
+{
+    int num = INT_MIN;
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (v[i] > num)
+            num = v[i];
+    }
+
+    return num;
+}
+
+int getSum(vector<int> &v)
+{
+
+    int sum = 0;
+
+    for (int i = 0; i < v.size(); i++)
+    {
+        sum += v[i];
+    }
+
+    return sum;
+}
+
+int getCount(vector<int> &v, int x)
+{
+
+    int count = 1;
+    int sum = v[0];
+
+    for (int i = 1; i < v.size(); i++)
+    {
+        if (sum + v[i] <= x)
+            sum += v[i];
+        else
+        {
+            sum = v[i];
+            count++;
+        }
+    }
+
+    return count;
+}
+
+int main()
+{
+
+    int n, k;
+    cin >> n >> k;
+
+    vector<int> arr(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+
+    int maxi = INT_MAX;
+    int high = getSum(arr);
+    int low = getMax(arr);
+
+    if (n < k)
+        maxi = -1;
+    else
+    {
+        while (low <= high)
+        {
+
+            int mid = (low + high) / 2;
+
+            int count = getCount(arr, mid);
+            
+            if(count > k) low = mid +1;
+            else{
+                high = mid - 1;
+            } 
+        }
+
+        maxi = low;
+    }
+
+    cout << maxi << endl;
+}

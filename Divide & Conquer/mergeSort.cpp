@@ -48,4 +48,13 @@ void MergeSort(vector<int> &arr, int low , int high){
 
 }
 
+int main()
+{
+    vector <int> arr = {12, 7 , 3 , 6, 19 , 23, 5, 11};
+    MergeSort(arr, 0 , arr.size()-1);
+
+    for(int i=0; i<arr.size(); i++){
+        cout << arr[i] << " ";
+    }
+}
 
