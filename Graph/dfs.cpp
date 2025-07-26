@@ -20,7 +20,6 @@ int main() {
     int start = 0;
     vector<int> res;
     dfs(start, vis, adj, res);
-
     
     for (int x : res) cout << x << " ";
     cout << endl;

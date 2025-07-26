@@ -9,7 +9,7 @@ class Solution {
             stack<int> s; 
             
             for(int i = 2*n - 1; i >= 0; i--) {
-                while(!s.empty() and nums[s.top()] <= nums[i % n]) {
+                while(!s.empty() && nums[s.top()] <= nums[i % n]) {
                     s.pop();
                 }
                 
