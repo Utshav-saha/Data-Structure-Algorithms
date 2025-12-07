@@ -122,6 +122,7 @@
     "valarray": "cpp",
     "variant": "cpp",
     "memory": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "tuple": "cpp"
   }
 }
