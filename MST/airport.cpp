@@ -3,9 +3,10 @@ using namespace std;
 
 class DisjointSet
 {
-    vector<int> parent, size;
 
 public:
+    vector<int> parent, size;
+    int component;
     DisjointSet(int n)
     {
         parent.resize(n + 1);
@@ -15,6 +16,7 @@ public:
             parent[i] = i;
             size[i] = 1;
         }
+        component = n;
     }
 
     int findUPar(int node)
@@ -34,16 +36,18 @@ public:
         {
             parent[ulp_u] = ulp_v;
             size[ulp_v] += size[ulp_u];
+            component--;
         }
         else
         {
             parent[ulp_v] = ulp_u;
             size[ulp_u] += size[ulp_v];
+            component--;
         }
     }
 };
 
-int kruskal(int n, vector<vector<int>> adj[],  vector<pair<int,int>> &mst )
+void kruskal(int n, vector<vector<int>> adj[] , int a)
 {
 
     vector<pair<int, pair<int, int>>> edges;
@@ -70,43 +74,40 @@ int kruskal(int n, vector<vector<int>> adj[],  vector<pair<int,int>> &mst )
         int u = it.second.first;
         int v = it.second.second;
 
+        if(wt >= a) continue;
+
         if (ds.findUPar(u) != ds.findUPar(v))
-        {   
-            mst.push_back({u, v});
+        {
             weight += wt;
             ds.unionBySize(u, v);
         }
     }
 
-    return weight;
+    cout << weight + ds.component * a << " " << ds.component << endl;
 }
+
 int main()
 {
+    int t;
+    cin >> t;
 
-    int n, m;
-    cin >> n >> m;
-    vector<vector<int>> adj[n];
-
-    for (int i = 0; i < m; i++)
+    while (t--)
     {
 
-        int u, v, w;
-        cin >> u >> v >> w;
-        adj[u].push_back({v, w});
-        adj[v].push_back({u, w});
-    }
+        int n, m, a;
+        cin >> n >> m >> a;
+        vector<vector<int>> adj[n];
 
-    int root;
-    cin >> root;
+        for (int i = 0; i < m; i++)
+        {
 
-    vector<pair<int, int>> mst;
+            int u, v, w;
+            cin >> u >> v >> w;
+            adj[u-1].push_back({v-1, w});
+            adj[v-1].push_back({u-1, w});
+        }
 
-    int res = kruskal(n, adj, mst);
+        kruskal(n, adj , a);
 
-    cout << "Total weight " << res << endl;
-
-    for (int i = 0; i < mst.size(); i++)
-    {
-        cout << mst[i].first << " " << mst[i].second << endl;
     }
 }

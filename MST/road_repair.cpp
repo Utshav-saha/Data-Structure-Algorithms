@@ -43,11 +43,11 @@ public:
     }
 };
 
-int kruskal(int n, vector<vector<int>> adj[],  vector<pair<int,int>> &mst )
+long long kruskal(int n, vector<vector<int>> adj[], vector<pair<int, int>> &mst)
 {
 
     vector<pair<int, pair<int, int>>> edges;
-    int weight = 0;
+    long long weight = 0;
 
     for (int i = 0; i < n; i++)
     {
@@ -71,7 +71,7 @@ int kruskal(int n, vector<vector<int>> adj[],  vector<pair<int,int>> &mst )
         int v = it.second.second;
 
         if (ds.findUPar(u) != ds.findUPar(v))
-        {   
+        {
             mst.push_back({u, v});
             weight += wt;
             ds.unionBySize(u, v);
@@ -92,21 +92,21 @@ int main()
 
         int u, v, w;
         cin >> u >> v >> w;
-        adj[u].push_back({v, w});
-        adj[v].push_back({u, w});
+        adj[u - 1].push_back({v - 1, w});
+        adj[v - 1].push_back({u - 1, w});
     }
 
     int root;
     cin >> root;
 
-    vector<pair<int, int>> mst;
+    vector<pair<int, int>> edges;
 
-    int res = kruskal(n, adj, mst);
+    long long res = kruskal(n, adj, edges);
 
-    cout << "Total weight " << res << endl;
-
-    for (int i = 0; i < mst.size(); i++)
+    if (edges.size() != n - 1)
     {
-        cout << mst[i].first << " " << mst[i].second << endl;
+        cout << "IMPOSSIBLE" << endl;
+        return 0;
     }
+    cout << res << endl;
 }

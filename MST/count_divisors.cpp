@@ -43,27 +43,22 @@ public:
     }
 };
 
-int kruskal(int n, vector<vector<int>> adj[],  vector<pair<int,int>> &mst )
-{
-
-    vector<pair<int, pair<int, int>>> edges;
-    int weight = 0;
-
-    for (int i = 0; i < n; i++)
-    {
-        for (auto it : adj[i])
-        {
-            int node = i;
-            int adjNode = it[0];
-            int nodeWt = it[1];
-
-            edges.push_back({nodeWt, {node, adjNode}});
-        }
+int power(long long n) {
+    int count = 0;
+    while (n > 1) {
+        n >>= 1;
+        count++;
     }
+    return count;
+}
 
-    sort(edges.begin(), edges.end());
+long long kruskal(int n, vector<pair<int, pair<int, int>>> &edges)
+{
+    long long weight = 0; 
+    
     DisjointSet ds(n);
 
+    int edgesCount = 0;
     for (auto it : edges)
     {
         int wt = it.first;
@@ -72,41 +67,48 @@ int kruskal(int n, vector<vector<int>> adj[],  vector<pair<int,int>> &mst )
 
         if (ds.findUPar(u) != ds.findUPar(v))
         {   
-            mst.push_back({u, v});
             weight += wt;
             ds.unionBySize(u, v);
+            edgesCount++;
         }
     }
 
     return weight;
 }
-int main()
-{
 
+void solve() {
     int n, m;
     cin >> n >> m;
-    vector<vector<int>> adj[n];
+    
+    vector<pair<int, pair<int, int>>> edges;
 
     for (int i = 0; i < m; i++)
     {
-
-        int u, v, w;
+        int u, v;
+        long long w;
         cin >> u >> v >> w;
-        adj[u].push_back({v, w});
-        adj[v].push_back({u, w});
+        
+    
+        int exponent = power(w);
+        
+        edges.push_back({exponent, {u, v}});
     }
 
-    int root;
-    cin >> root;
+    sort(edges.begin(), edges.end());
 
-    vector<pair<int, int>> mst;
+    long long min_exponent_sum = kruskal(n, edges);
 
-    int res = kruskal(n, adj, mst);
+    cout << min_exponent_sum + 1 << endl; 
+}
 
-    cout << "Total weight " << res << endl;
-
-    for (int i = 0; i < mst.size(); i++)
-    {
-        cout << mst[i].first << " " << mst[i].second << endl;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
     }
+    return 0;
 }
