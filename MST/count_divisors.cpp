@@ -1,3 +1,5 @@
+// SPOJ - Help the Old King
+
 #include <bits/stdc++.h>
 using namespace std;
 

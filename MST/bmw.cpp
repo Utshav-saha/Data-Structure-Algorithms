@@ -1,3 +1,5 @@
+// SPOJ BMW
+
 #include <bits/stdc++.h>
 using namespace std;
 

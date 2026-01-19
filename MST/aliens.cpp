@@ -1,3 +1,6 @@
+//http://poj.org/problem?id=3026
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
