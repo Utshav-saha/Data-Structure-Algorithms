@@ -1,3 +1,5 @@
+// UVA 12950 - Even Obsession
+
 #include <bits/stdc++.h>
 using namespace std;
 

@@ -1,3 +1,5 @@
+// gfg - Widest Path Problem (Bottleneck Path) using Modified Dijkstra's Algorithm
+
 #include <bits/stdc++.h>
 using namespace std;
 const int INF = INT_MAX;
